@@ -1,0 +1,126 @@
+@font-face {
+  font-family: "Lexend Giga";
+  src: url("../font/LexendGiga-VariableFont_wght.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Lexend Giga", serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #D8EEFD;
+}
+
+i {
+  cursor: pointer;
+}
+
+.container {
+  width: 360px;
+  height: 99%;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  padding: 0.8rem 1.25rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo img {
+  width: 1.5rem;
+}
+
+.logo h1 {
+  font-size: 1.75rem;
+  line-height: 40px;
+}
+
+header .new {
+  font-size: 1.5rem;
+}
+
+main {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.25rem;
+}
+
+main p {
+  height: 4rem;
+  font-size: 1.25rem;
+}
+
+.nova-tarefa {
+  width: 100%;
+  opacity: 0;
+  padding-top: 2rem;
+}
+
+.nova-tarefa .nova {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.nova-tarefa .btn-nova {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+fieldset {
+  width: 100%;
+  border: none;overflow: auto;
+}
+
+.lista-tarefas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.tarefa-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0.5rem 1rem;
+}
+
+.tarefa-item div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tarefa-item input {
+  width: 1rem;
+  height: 1rem;
+}

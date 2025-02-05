@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json">
+
+  <title>To-Do List</title>
+  <link rel="shortcut icon" href="./src/img/favicon-16x16.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="stylesheet" href="./src/icons/css/all.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="./src/img/favicon-32x32.png" alt="">
+        <h1>To-Do List</h1>
+      </div>
+      <i class="fa-solid fa-plus new"></i>
+    </header>
+
+    <main>
+      <p>Clique no "+" para adicionar uma nova tarefa à lista!</p>
+
+      <div class="nova-tarefa">
+        <input class="nova" type="text" placeholder="Nova Tarefa">
+        <button class="btn-nova"><i class="fa-solid fa-check"></i></button>
+      </div>
+
+      <fieldset>
+        <ul class="lista-tarefas">
+
+        </ul>
+      </fieldset>
+    </main>
+  </div>
+
+  <script src="./src/js/script.js"></script>
+  <script>if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./src/js/sw.js").then(() => {
+        console.log("Service Worker registrado!");
+      });
+    }
+  </script>
+</body>
+
+</html>
