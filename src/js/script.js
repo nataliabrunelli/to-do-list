@@ -14,34 +14,31 @@ btnNova.addEventListener("click", () => {
 });
 
 btnTarefa.addEventListener("click", () => {
-  let tarefa = inputTarefa.value;
+  let tarefaTexto = inputTarefa.value;
 
-  if (tarefa !== "") {
-    listaTarefas.innerHTML += `<li class='tarefa-item'>
-          <div>
-            <input type='checkbox' name='' id='tarefa'>
-            <label for='tarefa'>${tarefa}</label>
-          </div>
-          <i class="fa-regular fa-trash-can trash"></i>
-        </li>`;
+  if (tarefaTexto !== "") {
+    const tarefaObj = { texto: tarefaTexto, check: false }; // Sempre começa desmarcado
+    
+    tarefas.push(tarefaObj);
+    salvarNoLocalStorage();
+    adicionarTarefaNaLista(tarefaObj);
 
-    salvarTarefaNoLocalStorage(tarefa);
+    novaTarefa.style.opacity = "0";
   } else {
     paragrafo.style.display = "block";
   }
-
-  novaTarefa.style.opacity = "0";
 });
 
 listaTarefas.addEventListener("click", (e) => {
   if (e.target.classList.contains("trash")) {
-    // Encontra o elemento <li> pai e o remove
     const tarefaItem = e.target.closest(".tarefa-item");
     if (tarefaItem) {
       const tarefaTexto = tarefaItem.querySelector("label").innerText;
 
+      tarefas = tarefas.filter((tarefa) => tarefa.texto !== tarefaTexto);
+      salvarNoLocalStorage();
+
       tarefaItem.remove();
-      removerTarefaDoLocalStorage(tarefaTexto);
 
       if (listaTarefas.children.length === 0) {
         paragrafo.style.display = "block";
@@ -50,28 +47,41 @@ listaTarefas.addEventListener("click", (e) => {
   }
 });
 
-// Função para salvar no LocalStorage
-function salvarTarefaNoLocalStorage(tarefa) {
-  tarefas.push(tarefa);
+// Atualiza o estado da checkbox no LocalStorage ao marcar/desmarcar
+listaTarefas.addEventListener("change", (e) => {
+  if (e.target.type === "checkbox") {
+    const tarefaItem = e.target.closest(".tarefa-item");
+    const tarefaTexto = tarefaItem.querySelector("label").innerText;
+
+    tarefas = tarefas.map((tarefa) => 
+      tarefa.texto === tarefaTexto ? { ...tarefa, check: e.target.checked } : tarefa
+    );
+
+    salvarNoLocalStorage();
+  }
+});
+
+function adicionarTarefaNaLista(tarefa) { //recebe o objeto tarefa do localStorage quando carrega a página
+  const li = document.createElement("li");
+  li.classList.add("tarefa-item");
+
+  li.innerHTML = `
+    <div>
+      <input type='checkbox' ${tarefa.check ? "checked" : ""}>
+      <label>${tarefa.texto}</label>
+    </div>
+    <i class="fa-regular fa-trash-can trash"></i>
+  `;
+
+  listaTarefas.appendChild(li);
+}
+
+// Salva a lista no LocalStorage
+function salvarNoLocalStorage() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
 
-// Função para remover do LocalStorage
-function removerTarefaDoLocalStorage(tarefaTexto) {
-  tarefas = tarefas.filter((tarefa) => tarefa !== tarefaTexto);
-  localStorage.setItem("tarefas", JSON.stringify(tarefas));
-}
-
-// Função para carregar tarefas salvas ao abrir a página
+// Carrega as tarefas ao iniciar
 window.onload = function () {
-
-  tarefas.forEach(tarefa => {
-    listaTarefas.innerHTML += `<li class='tarefa-item'>
-          <div>
-            <input type='checkbox' name='' id='tarefa'>
-            <label for='tarefa'>${tarefa}</label>
-          </div>
-          <i class="fa-regular fa-trash-can trash"></i>
-        </li>`;
-  });
-};
+  tarefas.forEach(adicionarTarefaNaLista);
+}
