@@ -40,6 +40,7 @@
   </div>
 
   <script src="./src/js/script.js"></script>
+  <!-- Verifica a compatibilidade do navegador e registra o SW -->
   <script>if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("./src/js/sw.js").then(() => {
         console.log("Service Worker registrado!");

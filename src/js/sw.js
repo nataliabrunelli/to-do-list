@@ -1,3 +1,4 @@
+// Instalação do SW e cache dos arquivos
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("app-cache").then((cache) => {
@@ -17,6 +18,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
+// Intercepta a requisição para servir o cache se existir
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
