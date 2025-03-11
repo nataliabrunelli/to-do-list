@@ -61,6 +61,10 @@ header .new {
   font-size: 1.5rem;
 }
 
+aside {
+  padding: 2rem 1.25rem 0;
+}
+
 main {
   height: 90%;
   display: flex;
@@ -76,7 +80,7 @@ main p {
 
 .nova-tarefa {
   width: 100%;
-  opacity: 0;
+  display: none;
   padding-top: 2rem;
 }
 
