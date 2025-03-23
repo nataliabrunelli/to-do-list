@@ -20,11 +20,15 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
-  background-color: #D8EEFD;
+  background-color: #02182B;
 }
 
 i {
   cursor: pointer;
+}
+
+.new:hover {
+  transform: scale(1.1);
 }
 
 .container {
@@ -32,6 +36,7 @@ i {
   height: 99%;
   border: 1px solid white;
   border-radius: 20px;
+  background-color: #F4F5F4;
 }
 
 header {
@@ -94,6 +99,12 @@ main p {
   border: none;
   border-radius: 5px;
   padding: 0.5rem;
+  background-color: #DFE2DF;
+}
+
+.nova-tarefa .btn-nova:hover {
+  outline: 1px solid gray;
+  transform: scale(1.1);
 }
 
 fieldset {
